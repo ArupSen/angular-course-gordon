@@ -9,13 +9,13 @@ angular.module('myApp.controllers', [])
     var partiesRef = new Firebase('https://waitandeat-arup.firebaseio.com/');
 
     $scope.parties = $firebase(partiesRef);
-    $scope.party = {
+    $scope.newParty = {
       name: '',
       phone: '',
       size: ''
     }
     $scope.saveParty = function(){
-        $scope.parties.$add($scope.party);
-        $scope.party = '';
+        $scope.parties.$add($scope.newParty);
+        $scope.newParty = '';
     }
   }]);
