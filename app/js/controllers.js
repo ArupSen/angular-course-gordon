@@ -5,17 +5,17 @@
 angular.module('myApp.controllers', [])
   .controller('LandingPageController', [function() {
   }])
-  .controller('WaitListController', ['$scope', function($scope) {
-    $scope.parties = [];
+  .controller('WaitListController', ['$scope','$firebase', function($scope, $firebase) {
+    var partiesRef = new Firebase('https://waitandeat-arup.firebaseio.com/');
+
+    $scope.parties = $firebase(partiesRef);
     $scope.party = {
       name: '',
       phone: '',
       size: ''
     }
     $scope.saveParty = function(){
-      if ($scope.party){
-        $scope.parties.push($scope.party);
+        $scope.parties.$add($scope.party);
         $scope.party = '';
-      }
     }
   }]);
